@@ -1,8 +1,7 @@
 <template>
   <section class="albums">
     <div class="container-fluid">
-      <div class="row justify-content-center align-items-center">
-        
+      <div class="row justify-content-center align-items-center"  v-if="!loading">
         <!-- ———— CARD ———— -->
         <div class="album col-4 col-lg-2" v-for="(album, index) in albums" :key="index">
           <img :src="album.poster" :alt="album.title">
@@ -10,7 +9,10 @@
           <p class="info">{{album.author}} <br> {{album.year}}</p>
         </div>
         <!-- ———— CARD ———— -->
+      </div>
 
+      <div class="row justify-content-center align-items-center"  v-else>
+        Loading...
       </div>
     </div>
   </section>
@@ -23,7 +25,8 @@ export default {
     data(){
       return {
         apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
-        albums: ''
+        albums: '',
+        loading:true
       }
     },
     created(){
@@ -35,6 +38,7 @@ export default {
         .get(this.apiUrl)
         .then (response =>{
           this.albums = response.data.response;
+          this.loading = false;
         })
       }
     }
