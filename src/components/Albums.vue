@@ -1,13 +1,17 @@
 <template>
   <section class="albums">
-    <div class="row justify-content-center align-items-center">
-      <!-- ———— CARD ———— -->
-      <div class="album col-4 col-lg-2" v-for="(album, index) in albums" :key="index">
-        <img :src="album.poster" :alt="album.title">
-        <p class="title">{{album.title}}</p>
-        <p class="info">{{album.author}} <br> {{album.year}}</p>
+    <div class="container-fluid">
+      <div class="row justify-content-center align-items-center">
+        
+        <!-- ———— CARD ———— -->
+        <div class="album col-4 col-lg-2" v-for="(album, index) in albums" :key="index">
+          <img :src="album.poster" :alt="album.title">
+          <p class="title">{{album.title}}</p>
+          <p class="info">{{album.author}} <br> {{album.year}}</p>
+        </div>
+        <!-- ———— CARD ———— -->
+
       </div>
-      <!-- ———— CARD ———— -->
     </div>
   </section>
 </template>

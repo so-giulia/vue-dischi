@@ -1,10 +1,13 @@
 <template>
   <header>
-    <div class="row align-items-center">
-        <div class="col-12">
-            <img id="logo" src="../img/logo-green.svg" alt="Logo Spotify Green">
+      <div class="container-fluid">
+          <div class="logo-container row align-items-center">
+            <div class="col-2">
+                <img id="logo" src="../img/logo-green.svg" alt="Logo Spotify Green">
+            </div>
         </div>
-    </div>
+      </div>
+    
   </header>
 </template>
 
@@ -18,14 +21,17 @@ export default {
 @import '@/style/general.scss';
 @import '@/style/vars.scss';
 header{
-    height:70px;
+    
     width:100%;
     background-color:$primary_light;
-    padding:10px 0;
 
-    #logo{
-        width:60px;
-        height:40px;
+    .logo-container{
+        height:70px;
+        padding:10px 0;
+        #logo{
+            width:60px;
+            height:40px;
+        }
     }
 }
 
