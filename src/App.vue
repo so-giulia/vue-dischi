@@ -25,10 +25,9 @@ export default {
 @import '@/style/vars.scss';
 
 #app{
-  height:100vh;
 
   main{
-    height:calc(100vh - 70px);
+    width:100%;
     background-color:$primary_dark;
     padding:70px 8%;
   }
