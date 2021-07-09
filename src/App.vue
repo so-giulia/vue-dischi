@@ -25,11 +25,10 @@ export default {
 @import '@/style/vars.scss';
 
 #app{
-
   main{
     width:100%;
     background-color:$primary_dark;
-    padding:70px 8%;
+    padding:70px 5%;
   }
 }
 
