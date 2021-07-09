@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <main>
-      <Albums/>
-    </main>
+    <Albums/>
   </div>
 </template>
 
@@ -23,13 +21,4 @@ export default {
 <style lang="scss">
 @import '@/style/general.scss';
 @import '@/style/vars.scss';
-
-#app{
-  main{
-    width:100%;
-    background-color:$primary_dark;
-    padding:70px 5%;
-  }
-}
-
 </style>

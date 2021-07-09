@@ -35,6 +35,7 @@ export default {
   },
   created(){
       this.getAlbums();
+      this.$emit('selectGenre',this.getAlbums());
   },
   methods:{
       getAlbums(){
@@ -52,4 +53,10 @@ export default {
 <style lang="scss" scoped>
 @import '@/style/general.scss';
 @import '@/style/vars.scss';
+
+.albums{
+    width:100%;
+    background-color:$primary_dark;
+    padding:70px 5%;
+}
 </style>

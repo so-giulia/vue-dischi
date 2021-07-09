@@ -2,8 +2,7 @@
     <div class="col-4 text-align-right">
         <label for="select">Filter by genre</label>
         <select name="genres" id="genres" class="rounded-pill">
-            <option value="">Test test test</option>
-            <option value="">Test 2 2 2 test</option>
+            <option></option>
         </select>
     </div>
 </template>
