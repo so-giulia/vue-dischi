@@ -18,8 +18,8 @@
 
 <script>
 import axios from 'axios';
-
 import AlbumCard from './AlbumCard.vue'
+import {eventBus} from '../main.js'
 
 export default {
     name: 'Albums',
@@ -34,8 +34,10 @@ export default {
       }
   },
   created(){
-      this.getAlbums();
-      this.$emit('selectGenre',this.getAlbums());
+      this.getAlbums(); 
+      eventBus.$on('filters', el =>{
+          console.log(el);
+        });     
   },
   methods:{
       getAlbums(){
@@ -43,6 +45,7 @@ export default {
         .get(this.apiUrl)
         .then (response =>{
           this.albums = response.data.response;
+          eventBus.$emit('selectGenre', this.albums);
           this.loading = false;
         })
       }

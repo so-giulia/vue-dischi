@@ -1,15 +1,37 @@
 <template>
     <div class="col-4 text-align-right">
         <label for="select">Filter by genre</label>
-        <select name="genres" id="genres" class="rounded-pill">
-            <option></option>
+        <select name="genres" id="genres" class="rounded-pill" v-model="filter">
+            <option value="all">All</option>
+            <option v-for="(genre, index) in genres" :key="index" :value="genre">
+                {{genre}}
+            </option>
         </select>
     </div>
 </template>
 
 <script>
+import {eventBus} from '../main.js'
+
 export default {
-    name:'Filters'
+    name:'Filters',
+    data(){
+        return{
+            genres:[],
+            filter:''
+        }
+    },
+    created(){
+        eventBus.$on('selectGenre', array =>{
+            array.forEach(oggetto => {
+                if(!this.genres.includes(oggetto.genre)){
+                    this.genres.push(oggetto.genre);
+                }
+            });
+        });
+        console.log(this.filters);
+        eventBus.$emit('filters', this.filters);
+    }
 }
 </script>
 
