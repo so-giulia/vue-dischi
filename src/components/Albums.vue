@@ -4,7 +4,7 @@
       <div class="row justify-content-center align-items-center"  v-if="!loading">
         <!-- ———— CARDS ———— -->
         <AlbumCard
-        v-for="(album, index) in albums"
+        v-for="(album, index) in filteredAlbums"
         :key="index"
         :datas="album"/>
         <!-- ———— CARDS ———— -->
@@ -29,15 +29,25 @@ export default {
   data(){
     return {
         apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
-        albums: '',
-        loading: true
+        albums: [],
+        test: [],
+        loading: true,
+        selectedGenre: 'All'
       }
   },
   created(){
       this.getAlbums(); 
       eventBus.$on('filters', el =>{
-          console.log(el);
-        });     
+          this.selectedGenre = el;
+      });     
+  },
+  computed:{
+    filteredAlbums(){
+        if(this.selectedGenre == 'All'){
+          return this.albums;
+        }
+        return this.albums.filter(album => album.genre == this.selectedGenre);
+    }
   },
   methods:{
       getAlbums(){
@@ -45,9 +55,11 @@ export default {
         .get(this.apiUrl)
         .then (response =>{
           this.albums = response.data.response;
-          eventBus.$emit('selectGenre', this.albums);
           this.loading = false;
+          this.selectedGenre = 'All';
+          eventBus.$emit('selectGenre', this.albums);
         })
+        .catch(err => console.log(err));
       }
   }
 }

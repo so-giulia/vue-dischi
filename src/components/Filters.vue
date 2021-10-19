@@ -1,8 +1,8 @@
 <template>
     <div class="col-4 text-align-right">
         <label for="select">Filter by genre</label>
-        <select name="genres" id="genres" class="rounded-pill" v-model="filter">
-            <option value="all">All</option>
+        <select name="genres" id="genres" class="rounded-pill" v-model="filter" @change="emitGenre">
+            <option value="All">All</option>
             <option v-for="(genre, index) in genres" :key="index" :value="genre">
                 {{genre}}
             </option>
@@ -21,16 +21,19 @@ export default {
             filter:''
         }
     },
-    created(){
-        eventBus.$on('selectGenre', array =>{
-            array.forEach(oggetto => {
-                if(!this.genres.includes(oggetto.genre)){
-                    this.genres.push(oggetto.genre);
+    mounted(){
+        eventBus.$on('selectGenre', albums =>{
+            albums.forEach(album => {
+                if(!this.genres.includes(album.genre)){
+                    this.genres.push(album.genre);
                 }
             });
         });
-        console.log(this.filters);
-        eventBus.$emit('filters', this.filters);
+    },
+    methods:{
+        emitGenre(){
+            eventBus.$emit('filters', this.filter);
+        }
     }
 }
 </script>
