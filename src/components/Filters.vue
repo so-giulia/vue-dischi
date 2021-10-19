@@ -1,5 +1,5 @@
 <template>
-    <div class="col-4 text-align-right">
+    <div class="col-10 col-lg-4 d-flex justify-content-end align-items-center">
         <label for="select">Filter by genre</label>
         <select name="genres" id="genres" class="rounded-pill" v-model="filter" @change="emitGenre">
             <option value="All">All</option>
